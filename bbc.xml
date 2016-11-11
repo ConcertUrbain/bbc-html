@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<bbc>
+	
+	<!-- -->
+	<!-- Saint-Denis -->
+	<!-- -->
+	
+	<query id="70">
+		<images>antenne_jeunesse_floue.jpg, barres_arbres_flous.jpg, barres_balcons_flous.jpg, barres_ciel_flou.jpg, barres_fleurs_floues.jpg,
+		barres_herbe_flou.jpg, barres_nombreuses_floues.jpg, beton_balconrouge_flou.jpg, caddy_flou.jpg, charpente_beige_floue.jpg, 
+		cheminees_arbre_flous.jpg, dame_barres_flou.jpg, gas_banc_flou.jpg, grillage_maisonverte_floue.jpg,
+		grillage_neige_flou.jpg, grillage_soleil_flou.jpg, grue_voiture_floues.jpg, immeuble_orange_flou.jpg, immeuble_raiesjuanes_flou.jpg, 
+		immeuble_riviere_flou.jpg, pont_arbre_flou.jpg, rivuere_hangar_flou.jpg, tobogan_herbe_flous.jpg, trace_avion_flou.jpg, voiture_cramee_floue.jpg, vue_riviere_flou.jpg
+		</images>
+		<carte>
+			<image>BBC_CARTE_SAINTDENIS.png</image>
+			<topleft>48.951081, 2.334334</topleft>
+			<bottomright>48.924244, 2.395274</bottomright>
+		</carte>
+	</query>
+	
+	<!-- -->
+	<!-- Paris, Sud -->
+	<!-- -->
+	
+	<query id="81">
+		<images>BBC_ParisSUD01.jpg, BBC_ParisSUD02.jpg, BBC_ParisSUD03.jpg, BBC_ParisSUD04.jpg</images>
+		<carte>
+			<image></image>
+			<topleft></topleft>
+			<bottomright></bottomright>
+		</carte>
+	</query>
+	
+	<!-- -->
+	<!-- Magic Spark (ex-Madison) -->
+	<!-- -->
+	
+	<query id="82" subfolder="images/entreprendre/">
+		<images>chinoiseries.jpg, dessinsable.jpg, drap.jpg, Dubai.jpg, embarques.jpg, fillepromenade.jpg, herbefleurie.jpg, LignesTel.jpg, machineferme.jpg, maisonbois.jpg, marche.jpg, 
+		plage.jpg, rapace.jpg, tassesursol.jpg, wedding.jpg
+		</images>
+	</query>
+	
+	<!-- -->
+	<!-- Même pas mal -->
+	<!-- -->
+	
+	<query id="83" subfolder="images/memepasmal/">
+		<images>NB_BAstille_visagesfond01_1.jpg, NB_BAstille_visagesfond02ap_1.jpg, NB_BAstille_visagesfond02cab_1.jpg, NB_BAstille_visagesfond03_1.jpg,
+		NB_BAstille_visagesfond08_1.jpg, NB_BAstille_visagesfond09_1.jpg, NB_BAstille_visagesfond10_1.jpg, NB_BAstille_visagesfond11_1.jpg, 
+		NB_BAstille_visagesfond12_1.jpg, NB_BAstille_visagesfond13_1.jpg, NB_BAstille_visagesfond14_1.jpg,
+		NB_BAstille_visagesfond15_1.jpg, NB_BAstille_visagesfond16_1.jpg, NB_BAstille_22_1.jpg,
+		NB_BAstille_visagesfond04_1.jpg, NB_BAstille_visagesfond06_1.jpg
+		</images>
+		<carte>
+			<image>BBC_CARTE_MEMEPASMAL.png</image>
+			<topleft>48.863298, 2.367034</topleft>
+			<bottomright>48.857722, 2.378879</bottomright>
+		</carte>
+	</query>
+	
+	<!-- -->
+	<!-- Kremlin Bicètre (ex-Lima, Peru) -->
+	<!-- -->
+	
+	<query id="84">
+		<images>BBC_LIMA01.jpg, BBC_LIMA02.jpg</images>
+	</query>
+	
+	<!-- -->
+	<!-- Paroles partagées -->
+	<!-- -->
+	
+	<query id="86" subfolder="images/parolespartagees/">
+		<images>fond_mosaique04flou.png</images>
+		<carte>
+			<image>BBC_CARTE_parolespartagees.png</image>
+			<topleft>48.826913, 2.364946</topleft>
+			<bottomright>48.820881, 2.379355</bottomright>
+		</carte>
+	</query>
+	
+	<!-- -->
+	<!-- Le bonheur à Bruay -->
+	<!-- -->
+	
+	<query id="87" subfolder="images/mines/">
+		<images>PHOTO_FOND_MOSAIQUE03.png, PHOTO_FOND_MOSAIQUE04.png, PHOTO_FOND_MOSAIQUE05.png, PHOTO_FOND_MOSAIQUE06.png,
+		PHOTO_FOND_MOSAIQUE07.png, PHOTO_FOND_MOSAIQUE08.png, PHOTO_FOND_MOSAIQUE09.png
+		</images>
+	</query>
+	
+	<!-- -->
+	<!-- FENS -->
+	<!-- -->
+	
+	<query id="89" subfolder="images/fens/">
+		<images>STDENIS_01_flou.jpg, STDENIS_02—flou.jpg, STDENIS_03_flou.jpg, STDENIS_04_flou.jpg
+		</images>
+		<carte>
+			<image>BBC_CARTE_6B.png</image>
+			<topleft>48.947332, 2.328755</topleft>
+			<bottomright>48.931856, 2.370275</bottomright>
+		</carte>
+	</query>
+	
+	<!-- -->
+	<!-- SOUK MACHINES -->
+	<!-- -->
+	
+	<query id="90" subfolder="images/souk/" backgroundSound="sons/souk/SON_FOND_SOUK_COURT.mp3">
+		<images>FOND_soukmachines01.jpg, FOND_soukmachines02.jpg, FOND_soukmachines03.jpg, FOND_soukmachines04.jpg, 
+		FOND_soukmachines05.jpg, FOND_soukmachines06.jpg, FONC_SOUK_03ballons_flou.jpg, FOND_bbc_FLOU.jpg, FOND_bbc_FLOU2.jpg,
+		FOND_NUIT_FLOU2.jpg, FOND_SOUK_02_FLOU.jpg, FOND_SOUK_04_paname-flou.jpg, FOND_SOUK_04crane.jpg, FOND_SOUK_05mur.jpg,
+		FOND_SOUK_06_paname-flou.jpg
+		</images>
+		<carte>
+			<image>BBC_CARTE_6B.png</image>
+			<topleft>48.947332, 2.328755</topleft>
+			<bottomright>48.931856, 2.370275</bottomright>
+		</carte>
+	</query>
+	
+</bbc>

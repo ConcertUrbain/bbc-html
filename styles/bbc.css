@@ -1,0 +1,944 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: "cafeteriaRegular";
+	src: url("../fonts/Cafeteria-Regular.otf");
+}
+
+@font-face {
+	font-family: "cafeteriaBold";
+	src: url("../fonts/CafeteriaBold.ttf");
+}
+
+html, body {
+	height:100%;
+}
+
+body, div, p, input, select, ul, li {
+	margin:0px;
+	padding:0px;
+	font-family: "cafeteriaBold";
+}
+
+body {
+	overflow:hidden;
+	width:100%;
+	height:100%;
+}
+
+.clear {
+	clear:both;
+}
+
+.global {
+	margin:0px auto;
+	width:100%;
+	height:100%;
+	background-color:white;
+}
+
+.global .header {
+}
+
+.global .container {
+	position:relative; /* needed for footer positioning*/
+	height:auto !important; /* real browsers */
+	height:100%; /* IE6: treaded as min-height*/
+}
+
+.global .footer {
+	position:absolute;
+	width:100%;
+	bottom:0; /* stick to bottom */	
+}
+
+.global .haut {
+	width:100%;
+	height:10%;
+	padding-top:15px;
+	padding-bottom:15px;
+	clear:both;
+}
+
+.global .haut .utopique {
+	background-image:url(../medias/general/utopique.jpg);
+	background-size:170px 30px;
+	background-repeat:no-repeat;
+	width:180px;
+	height:30px;
+	margin:20px auto;
+	/**/
+	text-align:center;
+}
+
+.global .haut .utopique p {
+	display:inline-block;
+}
+
+.global .bas {
+	width:100%;
+	height:10%;
+	padding-bottom:15px;
+	padding-top:15px;
+	position:relative;
+}
+
+
+.global .bas .retour {
+	position:absolute;
+	left: 10px;
+	bottom:10px;
+	background-image: url(../images/retour.jpg);
+	background-repeat: no-repeat;
+	width:39px;
+	height:39px;
+	cursor:pointer;
+}
+
+.global .bas .temoignage {
+	position:absolute;
+	right: 8%;
+	top:10px;
+	color:#999999;
+	cursor:pointer;
+}
+
+.global .bas .plein_ecran {
+	position:absolute;
+	right:10px;
+	bottom:10px;
+	background-image: url(../images/plein_ecran.png);
+	background-repeat: no-repeat;
+	width:34px;
+	height:33px;
+	cursor:pointer;
+}
+
+.global .bas .menu {
+	position:absolute;
+	left: 8%;
+	top:10px;
+	display:none; /* par défaut, en arrivant sur la home */
+}
+
+.global .bas .menu > div {
+	color:#999999;
+}
+
+.global .bas .menu li {
+	float: left;
+	list-style: none;
+	padding: 0px 16px;
+	background-repeat: no-repeat;
+	background-position: 0px 3px;
+	cursor:pointer;
+	background-image: url(../images/point_rouge.png);
+	color:#FF0000;
+}
+
+.global .bas .menu li.inactive {
+	background-image: url(../images/point_gris.png);
+	color:#999999;
+}
+
+.global .terme {
+	opacity:0; /* par défaut, en arrivant sur la home */
+}
+
+.global .bas .realiste {
+	background-image:url(../medias/general/realiste.jpg);
+	background-size:170px 30px;
+	background-repeat:no-repeat;
+	width:180px;
+	height:30px;
+	margin:20px auto;
+	/**/
+	text-align:center;
+}
+
+.global .milieu {
+	width:100%;
+	height:auto !important; /* real browsers */
+	height:100%; /* IE6: treaded as min-height*/
+	min-height:100%; /* real browsers */
+}
+
+.global .milieu .gauche {
+	float:left;
+	padding-top:100px;
+	width:8%;
+	min-width:20px;
+}
+
+
+.global .milieu .gauche .individuel {
+	background-image:url(../medias/general/individuel.jpg);
+	background-size:32px 203px;
+	background-repeat:no-repeat;
+	background-position:center center;
+	width:32px;
+	height:203px;
+	margin-left:22px;
+	display:inline-block;
+}
+
+.global .milieu .droite {
+	float:right;
+	padding-top:100px;
+	width:8%;
+	min-width:20px;
+}
+
+.global .milieu .droite .collectif {
+	background-image:url(../medias/general/collectif.jpg);
+	background-size:32px 203px;
+	background-repeat:no-repeat;
+	margin-left:22px;
+	width:32px;
+	height:203px;
+}
+
+.global .milieu .centre {
+	float:left;
+	width:84%;
+	height:auto !important; /* real browsers */
+	height:100%; /* IE6: treaded as min-height*/
+	min-height:100%; /* real browsers */
+}
+
+.global .milieu .centre .ecrans {
+	position: relative;
+}
+
+.global .milieu .centre .ecrans .accueil {
+	width:100%;
+	height:556px; /* sera calculé */
+	
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	-ms-border-radius: 15px;
+	border-radius: 15px;
+	position: absolute;
+	
+	background-image:url(../medias/accueil/bg.jpg);
+	background-size:cover;
+	background-repeat:no-repeat;
+}
+
+
+
+
+.global .centre .ecrans .accueil .titres {
+	position:absolute;
+	pointer-events:none;
+	left:40px;
+	bottom: 40px;
+	z-index: 10;
+	
+	color:white;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.2);
+}
+
+.global .centre .ecrans .accueil .titres .titre {
+	font-size:50px;
+	width:402px;
+}
+
+.global .centre .ecrans .accueil .titres .soustitre {
+	font-size:25px;
+	width:477px;
+	font-family:"CafeteriaRegular";
+}
+
+.global .centre .ecrans .accueil .projets {
+	background-image:url(../medias/accueil/menu_bg.png);
+	background-size:595px 662px;
+	background-repeat:no-repeat;
+	width:425px;
+	height:662px;
+	padding-left:150px;
+	padding-top:180px;
+	padding-bottom:20px;
+	position:absolute;
+	right:0px;
+}
+
+.global .centre .ecrans .accueil .projets .header {
+	width:280px;
+	color:#7a6f6f;
+	font-size:25px;
+	line-height:25px;
+	margin:0 0 10px 0;
+}
+
+.global .centre .ecrans .accueil .projets .liste li {
+	list-style-image:url(../images/point_rouge.png);
+}
+
+.global .centre .ecrans .accueil .projets .liste li a {
+	font-family:"cafeteriaRegular";
+	color:#999999;
+	text-decoration: none;
+	font-size:20px;
+}
+
+
+
+.global .centre .ecrans .accueil .projets .liste a:hover {
+	text-decoration:underline;
+}
+
+.global .centre .ecrans .accueil .projets .liste li {
+}
+
+/* point_rouge.png */
+
+.global .centre .ecrans .mosaique {
+	background-size:cover;
+	background-repeat:no-repeat;
+	width:100%;
+	height:640px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	overflow:hidden;
+	display:none;
+	position: absolute;
+}
+
+.global .centre .ecrans .mosaique {
+	position: absolute;
+}
+
+.global .centre .ecrans .mosaique .intro {
+	background-color:rgba(255,255,255,0.60);
+	position:absolute;
+	width:100%;
+	height:100%;
+}
+
+.global .centre .ecrans .mosaique .intro .introBg {
+	-moz-border-radius: 25px;
+	border-radius: 25px;
+	background-color:white;
+	background-image:url(../images/petitMandala.png);
+	background-repeat:no-repeat;
+	background-position:center 10px;
+	width:600px;
+	height:400px; 
+	margin:50px auto;
+	color:#333333;
+}
+
+.global .centre .ecrans .mosaique .intro .description {
+	padding:300px 50px 0px 50px;
+	font-size: 20px;
+	color: #555555;
+}
+
+.global .centre .ecrans .mosaique .vues {
+	position: relative;
+	height: inherit;
+}
+
+.global .centre .ecrans .mosaique .vues .vue.votes {
+	position: absolute;
+}
+
+.global .centre .ecrans .mosaique .vues .vue.carte {
+	position: absolute;
+	width:100%;
+}
+
+.global .centre .ecrans .mosaique .vues .vue.indices {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: white;
+	background-image: url(../images/traits_rouge.png);
+	background-position: center 20px;
+	background-repeat: no-repeat;
+}
+
+.global .centre .ecrans .mosaique .vues .vue.indices .indiceParent {
+	position: relative;
+}
+
+.global .centre .ecrans .mosaique .vues .vue.indices .mandalaIndices {
+	position: absolute;
+}
+
+.global .centre .ecrans .mosaique .vues .vue.indices .titreIndice {
+	position: absolute;
+	width:100%;
+	text-align: center;
+	margin-top: 280px;
+	pointer-events:none;
+}
+
+.global .centre .ecrans .mosaique .vues .vue.indices .titreIndice .videos {
+	color:#CCCCCC;
+}
+
+
+
+/* carte */
+
+.leaflet-control-zoom {
+	margin-left:20px !important;
+}
+
+.leaflet-marker-pane img {
+	cursor:pointer;
+}
+
+.leaflet-div-icon {
+	background:none !important;
+	border:none !important;
+	width:17px !important;
+	height:40px !important;
+}
+
+.parent_icon_svg {
+	position: relative;
+	width:25px;
+	height:25px;
+}
+
+.parent_icon_svg a {
+	width:25px;
+	height:25px;
+}
+
+.icon_svg {
+	width:25px;
+	height:25px;
+}
+
+.parent_perso_svg {
+	position: relative;
+	width:17px;
+	height:40px;
+}
+
+.parent_perso_svg a {
+	position: absolute;
+	width:17px;
+	height:40px;
+}
+
+.perso_svg {
+	transform:scale(0.5,0.5);
+	transform-origin: 0 0;
+	width: 34px;
+	height: 80px;
+}
+
+
+/* popup media player */
+
+.global .popup.player {
+	position: absolute;
+	width:100%;
+	height:100%;
+	left:0px;
+	top:0px;
+	z-index: 1098;
+	display:none;
+}
+
+.global .popup.player .popupRelative {
+	position:relative;
+}
+
+.global .popup.player .popupBg {
+	position:absolute;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+}
+
+.global .popup.player .popupContent {
+	position:relative;
+	left:0;
+	top:0;
+	z-index:1112;
+	
+	background-color: rgba(255,255,255,0);
+	background-image: url(../images/bg_player_bbc.png);
+	background-position: center 50px;
+	background-repeat: no-repeat;
+	
+	width:820px;
+	height:750px;
+	margin:0px auto;
+	
+	/* ombre */
+	-webkit-filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.25));
+	filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.25));
+}
+
+.global .popup.player .popupHeader {
+	height:10px;
+}
+
+.global .popup.player .popupClose {
+	position:absolute;
+	top:0px;
+	right:-30px;
+	width: 30px;
+	text-align: center;
+	font-size:25px;
+	cursor:pointer;
+}
+
+.global .popup.player .popupHeader .popupTitle {
+	float:right;
+	width: 20px;
+}
+
+.global .popup.player .popupContent .popupMedia .popupMediaTitle {
+	margin-bottom:15px;
+	font-size: 25px;
+	color: #999999;
+}
+
+.global .popup.player .popupContent .popupMedia {
+	width: 320px;
+	margin:225px auto 0 auto;
+	position: relative;
+}
+
+.global .popup .popupMedia img {
+    max-width: 100%;
+    height: auto;
+}
+.global .popup .popupMedia img {
+    max-height: 100%;
+    width: auto;
+}
+
+.global .popup .popupMedia img {
+    margin: 0 auto;
+    display: block;
+    position: relative;
+    top: 50%;
+    -moz-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.global .popup.player .popupContent .popupMedia .popupMediaMotif {
+	position: absolute;
+	left: -330px;
+	top: -265px;
+	filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.25));
+}
+
+
+.global .popup.player .popupMediaPlayer {
+	width: 320px;
+	height: 240px;
+	border: 1px solid #EEEEEE;
+	background-color: #FDFDFD;
+}
+
+.global .popup.player .popupMediaPlayer .textMedia {
+	padding:10px;
+	overflow:auto;
+	height:240px;
+}
+
+
+.global .popup.player .popupMediaPlayer .mejs-container {
+    position: absolute;
+    width: 320px;
+    height: 240px;
+}
+
+.global .popup.player .popupSliders {
+	width: 400px;
+	margin: 10px auto;
+}
+
+.global .popup.player .popupSliders .inputs {
+	margin:0 auto;
+	width:320px;
+}
+
+.global .popup.player .popupSliders .inputs .sliders {
+	margin-left: 10px;
+}
+
+.global .popup.player .popupSliders .inputs .sliders span {
+	width:60px;
+	display:inline-block;
+	color: #AAA;
+}
+
+.global .popup.player .popupSliders .inputs input {
+	width:180px;
+	margin:5px;
+	vertical-align: middle;
+}
+
+.global .popup.player .popupSliders .button {
+	margin:4px auto;
+	width:100px;
+}
+
+.global .popup.player .popupSliders .button button {
+	width:90px;
+}
+
+
+
+/* Tooltip */
+
+.global .tooltip {
+	position:absolute;
+	pointer-events:none;
+	background-color:white;
+	border-radius:10px;
+	box-shadow:2px 2px 4px white;
+	padding:5px 15px 5px 15px;
+	display:none;
+	z-index:500; /* pour passer au dessus de la carte */
+}
+
+.global .tooltip p.title {
+	color:#333333;
+}
+
+.global .tooltip p.username {
+	color:#CCCCCC;
+}
+
+.global .animationAttente {
+	pointer-events:none;
+	position:absolute;
+	width:100%;
+	top:0;
+	z-index:100;
+}
+
+.global .animationAttente .spinnerParent {
+	position:relative;
+	width:inherit;
+	height:inherit;
+	display:none;
+	border-radius: 15px;
+	background-color:rgba(255,255,255, 0.25);
+}
+
+.global .animationAttente .spinner {
+	left:50% !important;
+	top:50% !important;
+}
+
+.global .animationAttente .spinner div {
+	box-shadow:2px 2px 4px rgba(0,0,0,0.5) !important;
+	
+}
+
+
+/* Upload */
+
+.global .uploadParent {
+	position:absolute;
+	left:0px;
+	top:0px;
+	z-index:1300;
+	display:none;
+	width:100% !important;
+	height:100% !important;
+	background-color: rgba(255,255,255,0.80);
+}
+
+#fileSelect {
+	color:#FFFFFF;
+}
+
+#formQueries, #formKeywords {
+	color:#000000;
+}
+
+#formKeywords {
+	margin:30px;
+}
+
+.global .uploadParent .uploadRelative {
+	position:relative;
+}
+
+.global .uploadParent .uploadMargin {
+	margin:100px 8% 100px 8%;
+	position:relative;
+	left:0;
+	top:0;
+	z-index:1301;
+}
+
+.global .uploadParent .uploadBg {
+	position:absolute;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+}
+
+.global .uploadParent .uploadContent {
+	width:100%;
+	height:100%;
+	background-color: rgba(255,255,255,1.0);
+	border:1px solid #CCCCCC;
+	border-radius: 15px;
+	font-size: 20px;
+	color:#999999;
+}
+
+.global .uploadParent .uploadContent .uploadHeader {
+	height:0px;
+}
+
+.global .uploadParent .uploadContent .uploadClose {
+	float:right;
+	width:20px;
+	height:20px;
+	cursor:pointer;
+}
+
+.global .uploadParent .uploadContent .uploadBody {
+	height:500px;
+	clear:both;
+}
+
+.global .uploadParent .uploadContent .uploadBody .rubrique {
+	background-image:url(../images/carre_rouge.png);
+	background-repeat:no-repeat;
+	padding-left: 28px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.global .uploadParent .uploadContent .uploadBody .rubrique.principale {
+	text-transform: uppercase;
+	color: #FF0000;
+	background-image: none;
+}
+
+.global .uploadParent .uploadContent .uploadBody .rubrique.etape {
+	display:inline;
+	/* padding:3px 10px 5px 30px; */
+}
+
+.global .uploadParent .uploadContent .uploadBody .sousrubrique {
+	font-size:0.8em;
+	padding-top: 3px;
+}
+.global .uploadParent .uploadContent .uploadBody .elementForm {
+	padding:0px 50px 0px 0px;
+}
+
+.global .uploadParent .uploadContent .uploadBody .elementForm p {
+	padding-bottom:3px;
+}
+
+.global .uploadParent .uploadContent .uploadBody  button {
+	margin-top:10px;
+	display:inline;
+}
+
+.global .uploadParent .uploadContent .uploadBody .uploadStatus {
+	font-size: 0.75em;
+	padding-top: 19px;
+	font-style: italic;
+}
+
+.global .uploadParent .uploadContent .uploadBody .sliders {
+	padding:30px;
+}
+
+.global .uploadParent .uploadContent .uploadBody .sliders .elementForm span {
+	padding:10px;
+}
+
+.global .uploadParent .uploadContent .uploadBody .buttonParent {
+	clear:both;
+	padding:20px 5px 0px 0px;
+}
+
+
+/* login / inscription */
+
+.global .uploadParent .uploadContent .uploadBody .etape_user {
+	padding: 26px 50px 20px 85px;
+	position: relative;
+}
+
+.loginForm .label, .inscriptionForm .label {
+	display:inline-block;
+	width:150px;
+	margin:5px;
+}
+
+.global .uploadParent .uploadContent input, .global .uploadParent .uploadContent select, .global .uploadParent .uploadContent button {
+	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size:15px;
+	color: #666666;
+}
+
+.global .uploadParent .uploadContent .uploadForm input {
+	width:150px;
+}
+
+#inscription-button, #login-button {
+	float:left;
+	margin-top:50px;
+	margin-left:350px;
+}
+
+.global .uploadParent .uploadContent .uploadBody .tabLoginInscription {
+	width: 155px;
+	height: 50px;
+	border-bottom: 1px solid #CCCCCC;
+}
+
+.global .uploadParent .uploadContent .uploadBody .tabLoginInscription > div {
+	padding:20px 20px 20px 2px;
+	cursor:pointer;
+	float:left;
+}
+
+.global .uploadParent .uploadContent .uploadBody .tabLoginInscription .selected {
+	color:#FF0000;
+	cursor:default;
+}
+
+.global .uploadParent .uploadContent .uploadBody .tabLoginInscription .inscription {
+	padding:20px 0px 20px 0px;
+}
+
+
+.global .uploadParent .uploadContent .uploadBody .loginForm {
+	display:block;
+	padding-top:30px;
+	clear:both;
+}
+
+.global .uploadParent .uploadContent .uploadBody .inscriptionForm {
+	display:none;
+	padding-top:30px;
+	clear:both;
+}
+
+.global .uploadParent .uploadContent .uploadBody .inscriptionForm .label {
+	width:200px;
+	text-align:right;
+	padding:5px;
+}
+
+/* upload */
+.global .uploadParent .uploadContent .uploadBody .etape_upload {
+	padding: 0px 50px 0px 50px;
+	position: relative;
+}
+
+.global .uploadParent .uploadContent .uploadBody .uploadForm {
+	float:left;
+	padding-top: 30px;
+}
+
+.global .uploadParent .uploadContent .uploadBody .uploadForm select {
+	text-transform: uppercase;
+}
+
+.global .uploadParent .uploadContent .uploadBody .uploadedMedia {
+	position: absolute;
+	width: 200px !important;
+	height: 200px;
+	top: 50px;
+	right: 20px;
+}
+
+.global .uploadParent .uploadContent .uploadBody .uploadedMedia img {
+	width:190px !important;
+}
+
+.global .uploadParent .uploadContent .uploadBody .uploadedMedia > div {
+	width:190px !important;
+}
+
+.global .uploadParent .uploadContent .uploadBody .uploadForm .elementForm .envoiTexte textarea {
+	width: 500px;
+	margin-right: 5px;
+}
+
+/* vote */
+.global .uploadParent .uploadContent .uploadBody .etape_vote {
+	padding: 20px 50px 20px 50px;
+}
+
+/* carte */
+.global .uploadParent .uploadContent .uploadBody .etape_map {
+	padding: 20px 50px 20px 50px;
+}
+
+.global .uploadParent .uploadContent .uploadBody .formMapParent {
+	height: 340px;
+}
+
+.global .uploadParent .uploadContent .uploadBody .mapParent {
+	
+	position:relative;
+	margin:20px;
+	
+	/*
+	Pour la carte Bitmap :
+	
+	-moz-transform:scale(0.25);
+	-webkit-transform:scale(0.25);
+	-o-transform:scale(0.25);
+	transform:scale(0.25);
+	
+	-moz-transform-origin:0% 0%;
+	-webkit-transform-origin:0% 0%;
+	-o-transform-origin:0% 0%;
+	transform-origin:0% 0%;
+	*/
+}
+
+.global .uploadParent .uploadContent .uploadBody .mapParent .map {
+	position:absolute;
+}
+
+.global .uploadParent .uploadContent .uploadBody .mapParent .item {
+	position:absolute;
+}
+
+/* mots-clés */
+.global .uploadParent .uploadContent .uploadBody .etape_keyword {
+	padding: 80px 50px 20px 50px;
+}
+
+.global .uploadParent .uploadContent .uploadBody .keywords {
+}
+
+.global .uploadParent .uploadContent .uploadBody .keywords .keyword {
+	float:left;
+	padding:15px;
+	cursor:pointer;
+}
+
+.global .uploadParent .uploadContent .uploadBody .keywords .keyword.selected {
+	color:#FF0000;
+}
+
+.global .uploadParent .uploadContent .uploadBody .etape_envoi {
+	padding: 20px 50px 20px 50px;
+}
+
+.global .uploadParent .uploadContent .uploadBody .etape_conclusion {
+	padding: 20px 50px 20px 50px;
+}

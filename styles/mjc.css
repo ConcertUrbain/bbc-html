@@ -1,0 +1,486 @@
+@charset "UTF-8";
+
+body, div, p, input, select, li, ul {
+	margin:0px;
+	padding:0px;
+	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.clear {
+	clear:both;
+}
+
+.global {
+	margin:0px auto;
+	padding-bottom:20px;
+	width:100%;
+}
+
+.global .couleur_base, 
+.global .couleur_base a {
+	color:#ae0d03;
+}
+
+.global .terme {
+	opacity:0;
+}
+ 
+
+.global .haut {
+	width:100%;
+}
+
+.global .haut .utopique {
+	margin-bottom:15px;
+	margin-top:15px;
+	text-align:center;
+}
+
+.global .bas {
+	width:100%;
+}
+
+.global .bas .realiste {
+	margin-bottom:20px;
+	margin-top:15px;
+	text-align:center;
+}
+
+.global .milieu {
+	width:100%;
+	height:620px;
+}
+
+.global .milieu .gauche {
+	float:left;
+	padding-top:300px;
+}
+
+.global .milieu .gauche .individuel {
+}
+
+.global .milieu .gauche .individuel p {
+	-moz-transform:rotate(-90deg);
+	-webkit-transform:rotate(-90deg);
+	-ms-transform:rotate(-90deg);
+	-o-transform:rotate(-90deg);
+	transform:rotate(-90deg);
+	
+	-moz-transform-origin:50% 50%;
+	-webkit-transform-origin:50% 50%;
+	-ms-transform-origin:50% 50%;
+	-o-transform-origin:50% 50%;
+	transform-origin:50% 50%;
+}
+
+.global .milieu .droite {
+	float:right;
+	padding-top:300px;
+}
+
+.global .milieu .droite .collectif {
+}
+
+.global .milieu .droite .collectif p {
+	-moz-transform:rotate(90deg);
+	-webkit-transform:rotate(90deg);
+	-ms-transform:rotate(90deg);
+	-o-transform:rotate(90deg);
+	transform:rotate(90deg);
+	
+	-moz-transform-origin:50% 50%;
+	-webkit-transform-origin:50% 50%;
+	-ms-transform-origin:50% 50%;
+	-o-transform-origin:50% 50%;
+	transform-origin:50% 50%;
+}
+
+
+.global .milieu .centre {
+	float:left;
+	width:85%; /* ?? */
+}
+
+.global .milieu .centre .ecrans {
+	position: relative;
+}
+
+.global .centre .ecrans .accueil {
+	width:100%;
+	height:640px;
+	border-radius: 15px;
+	-moz-border-radius: 15px;
+	position: absolute;
+}
+
+.global .centre .ecrans .accueil {
+	background-size: cover;
+	background-image:url("../medias/images/mjc_nogent/Nogent_Baltard_flou.jpg");
+}
+
+.global .centre .ecrans .accueil .titres {
+	padding-left:40px;
+	padding-top:500px;
+	position:absolute;
+	left:0px;
+}
+
+.global .centre .ecrans .accueil .titres .titre {
+	width:402px;
+	height:41px;
+}
+
+.global .centre .ecrans .accueil .titres .soustitre {
+	width:477px;
+	height:42px;
+}
+
+.global .centre .ecrans .accueil .projets {
+	width:80%;
+	height:80%;
+	margin:10%;
+	
+	background-color: rgba(255,255,255,0.8);
+	
+	-moz-box-shadow: 1px 1px 4px 0px #666666;
+	-webkit-box-shadow: 1px 1px 4px 0px #666666;
+	-o-box-shadow: 1px 1px 4px 0px #666666;
+	box-shadow: 1px 1px 4px 0px #666666;
+}
+
+.global .centre .ecrans .accueil .projets .header {
+	background-color:#C00306;
+	height:24px;
+}
+
+.global .centre .ecrans .accueil .projets .header .close {
+	float:right;
+	margin-right:10px;
+	color:#FFFFFF;
+}
+
+
+.global .centre .ecrans .accueil .projets .liste .queryTitre a {
+	text-decoration:none;
+	text-transform:uppercase;
+}
+
+.global .centre .ecrans .accueil .projets .liste .queryTitre {
+	font-weight:bold;
+}
+
+.global .centre .ecrans .accueil .projets .liste .queryDescription {
+	font-size:0.9em;
+	padding:5px 10px 10px 30px;
+}
+
+.global .centre .ecrans .accueil .projets .liste .queryDescription a {
+	text-transform:capitalize;
+	text-decoration:none;
+	color:#000000;
+}
+
+.global .centre .ecrans .accueil .projets .introduction {
+	padding:20px;
+}
+
+
+.global .centre .ecrans .accueil .projets .liste {
+	padding:20px;
+	overflow:scroll;
+	height:60%;
+}
+
+.global .centre .ecrans .accueil .projets .liste li {
+}
+
+
+/* Vue Items (icones-canvas) */
+
+.global .centre .ecrans .mosaique {
+	background-size:cover;
+	background-repeat:no-repeat;
+	width:100%;
+	height:640px;
+	
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+	
+	overflow:hidden;
+	display:none;
+	position: absolute;
+}
+
+.global .centre .ecrans .mosaique .mosaiqueModes {
+	position: relative;
+}
+
+.global .centre .ecrans .mosaique .mosaiqueModes .items,
+.global .centre .ecrans .mosaique .mosaiqueModes .users,
+.global .centre .ecrans .mosaique .mosaiqueModes .carte,
+.global .centre .ecrans .mosaique .mosaiqueModes .motcles {
+	position: absolute;
+}
+
+.global .centre .ecrans .indices {
+	position: absolute;
+}
+
+
+/* Vue Users */
+
+.global .mosaique .users {
+	padding:40px;
+}
+
+.global .mosaique .user {
+	float:left;
+	padding:40px;
+}
+
+.global .mosaique .user .userParent {
+}
+
+.global .mosaique .user .userParent .userName {
+}
+
+.global .mosaique .user .userParent .userItemsParent {
+	position:relative;
+}
+
+.global .mosaique .user .userParent .userItemsParent .itemTitre {
+	position:absolute;
+}
+
+.global .mosaique .user .userParent .userItemsParent .itemTitre img {
+	height:20px;
+}
+
+.global .mosaique .user a {
+	text-decoration:none;
+	color:#ae0d03;
+}
+
+/* Vue KeyWords */
+
+.global .mosaique .motcles {
+	padding:40px;
+}
+
+.global .mosaique .motCle {
+	float:left;
+	padding:5px 18px 5px 25px;
+}
+
+.global .mosaique .motCle .motCleTitle {
+	float:left;
+}
+
+.global .mosaique .motCle .motCleItemsParent {
+	float:left;
+}
+
+.global .mosaique .motCle .itemTitre {
+	width: 24px;
+	float:left;
+}
+
+.global .mosaique .motCle .itemTitre img {
+	height:20px;
+	margin-top:-4px;
+}
+
+.global .mosaique .motCle a {
+	text-decoration:none;
+	color:#ae0d03;
+}
+
+/* Vue Carte */
+
+.global .mosaique .carte {
+}
+
+
+
+/* */
+
+.global .centre .ecrans .popup {
+	position: absolute;
+	background-color:rgba(255,255,255,0.95);
+}
+
+.global .centre .ecrans .popup .popupContent {
+	position:relative;
+}
+
+.global .centre .ecrans .popup .popupClose {
+	position:absolute;
+	right:0px;
+	width:50px;
+	height:50px;
+	cursor:pointer;
+	z-index:2;
+}
+
+.global .centre .ecrans .popup .popupMedia {
+	position:absolute;
+	z-index:1;
+}
+
+.global .centre .ecrans .popup .popupMedia img {
+	margin:0 auto;
+	display: block;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+}
+
+.global .centre .ecrans .popup .popupMedia img {
+	max-height: 100%;
+	width:auto;
+}
+
+.global .centre .ecrans .popup .popupMedia img {
+	max-width: 100%;
+	height:auto;
+}
+
+.global .centre .ecrans .popup .popupSliders {
+	position:absolute;
+	width:100%;
+	height:80px;
+	z-index:3;
+}
+
+.global .centre .ecrans .popup .popupSliders .inputs {
+	margin:0 auto;
+	width:320px;
+}
+
+.global .centre .ecrans .popup .popupSliders .inputs .sliders {
+}
+
+.global .centre .ecrans .popup .popupSliders .inputs .sliders span {
+	width:60px;
+	display:inline-block;
+}
+
+.global .centre .ecrans .popup .popupSliders .inputs input {
+	width:180px;
+	margin:5px;
+	vertical-align: middle;
+}
+
+.global .centre .ecrans .popup .popupSliders .button {
+	margin:4px auto;
+	width:100px;
+}
+
+.global .centre .ecrans .popup .popupSliders .button button {
+	width:90px;
+}
+
+.global .centre .ecrans .animationAttente {
+	width:50px;
+	height:50px;
+	margin:0px auto;
+	padding-top:50%;
+}
+
+.global .tabs .onglet {
+	float:left;
+	text-transform:uppercase;
+	list-style:none;
+	padding:5px 30px 5px 30px;
+	margin-bottom:10px;
+	background-color:#a5a5a5;
+	cursor:pointer;
+}
+
+.global .tabs .onglet.active {
+	background-color:#6c6c6c;
+}
+
+.global .footer {
+	margin-left:25px;
+}
+
+
+/* Upload */
+
+.global .uploadParent {
+	position:absolute;
+	top:0px;
+	z-index:10;
+	display:none;
+	width:1133px;
+	height:659px;
+	background-color:#C3C3C3;
+}
+
+.global .uploadParent .uploadContent {
+}
+
+.global .uploadParent .uploadContent .uploadHeader {
+	height:20px;
+}
+
+.global .uploadParent .uploadContent .uploadClose {
+	float:right;
+	width:20px;
+	height:20px;
+	cursor:pointer;
+}
+
+.global .uploadParent .uploadContent .uploadBody {
+	clear:both;
+}
+
+.global .uploadParent .uploadContent .uploadBody .mapParent {
+	
+	position:relative;
+	
+	width:100%;
+	height:100%;
+	margin:20px;
+	
+	-moz-transform:scale(0.25);
+	-webkit-transform:scale(0.25);
+	-o-transform:scale(0.25);
+	transform:scale(0.25);
+	
+	-moz-transform-origin:0% 0%;
+	-webkit-transform-origin:0% 0%;
+	-o-transform-origin:0% 0%;
+	transform-origin:0% 0%;
+}
+
+.global .uploadParent .uploadContent .uploadBody .mapParent .map {
+	position:absolute;
+}
+
+.global .uploadParent .uploadContent .uploadBody .mapParent .item {
+	position:absolute;
+}
+
+.global .uploadParent .uploadContent .uploadBody .keywords {
+}
+
+.global .uploadParent .uploadContent .uploadBody .keywords .keyword {
+	float:left;
+	padding:15px;
+	cursor:pointer;
+}
+
+.global .uploadParent .uploadContent .uploadBody .buttonParent {
+	clear:both;
+}
+
+.global .uploadParent .uploadContent .uploadBody .keywords .keyword.selected {
+	color:#C00306;
+}
+
