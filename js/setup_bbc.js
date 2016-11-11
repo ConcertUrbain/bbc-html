@@ -11,14 +11,17 @@ $(function()
 	App.Views  = {};
 	
 	App.Views.appView = new BBCAppView();
-	App.Views.appView.serviceURL = "http://ws.chatanoo.org/services";
-	App.Views.appView.mediaCenterURL = "http://mc.chatanoo.org/m/";
-	App.Views.appView.adminParams = ["mazerte","desperados","BBC_qJlCaSsBbYBYypwF9TT8KmCOxhuZ"];
+	
+	var appView = App.Views.appView;
+	appView.proxy = "proxy/ba-simple-proxy.php?url=";
+	appView.serviceURL = "http://ws.chatanoo.org/services";
+	appView.mediaCenterURL = "http://mc.chatanoo.org/m/";
+	appView.adminParams = ["mazerte","desperados","BBC_qJlCaSsBbYBYypwF9TT8KmCOxhuZ"];
 		
 	// Emplacement de la carte (modifiable via les meta-données de l'admin Flash, question par question)
-	App.Views.appView.latitudeGMaps = 48.82129;
-	App.Views.appView.longitudeGMaps = 2.366234;
-	App.Views.appView.zoomGMaps = 17;
+	appView.latitudeGMaps = 48.82129;
+	appView.longitudeGMaps = 2.366234;
+	appView.zoomGMaps = 17;
 
 
 	// Permet de gérer les click au niveau des "div" parent d'un lien (plutôt qu'au niveau du lien lui-même)
