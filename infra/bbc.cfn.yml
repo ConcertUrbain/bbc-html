@@ -1,0 +1,260 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Chatanoo BBC
+
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+      - Label:
+          default: General Configuration
+        Parameters: ["ProjectName", "ChatanooStack", "UseSecureConnection", "DeploymentBucket", "DeploymentZipKey"]
+      - Label:
+          default: DNS Configuration
+        Parameters: ["SubDomainName", "Route53HostedZone"]
+      - Label:
+          default: Already exists ApiKey
+        Parameters: ["ApiKey", "User", "Password"]
+      - Label:
+          default: Interface Configuration
+        Parameters: ["Proxy"]
+
+Parameters:
+  ProjectName:
+    Type: String
+  ChatanooStack:
+    Type: String
+  UseSecureConnection:
+    Description: Use HTTPS to connect this website
+    Type: String
+    AllowedValues: ["true", "false"]
+    Default: "false"
+  DeploymentBucket:
+    Description: Chatanoo Deployment Bucket
+    Type: String
+    Default: chatanoo-deployments-eu-west-1
+  DeploymentZipKey:
+    Description: Url of Chatanoo Dring Deployment zip
+    Type: String
+    Default: front/bbc/1.0.0.zip
+
+  ApiKey:
+    Description: Your existing ApiKey in Chatanoo
+    Type: String
+  User:
+    Description: Your existing User in Chatanoo
+    Type: String
+  Password:
+    Description: Your existing Password for your User in Chatanoo
+    Type: String
+
+  Proxy:
+    Type: String
+
+  SubDomainName:
+    Description: Subdomain Name of the website
+    Type: String
+    Default: www
+  Route53HostedZone:
+    Description: AWS Route53 HostedZone ID of the domain
+    Type: String
+
+# Mappings
+
+Conditions:
+  CreateApiKey: !Equals [!Ref ApiKey, ""]
+  UseDNSRecord: !Not [!Equals [!Ref Route53HostedZone, ""]]
+  UseHTTPS: !Equals [!Ref UseSecureConnection, "true"]
+  UseDNSAndHTTPS: !And
+    - !Condition UseDNSRecord
+    - !Condition UseHTTPS
+  UseRootRecord: !And
+    - !Condition UseDNSRecord
+    - !Equals [!Ref SubDomainName, "www"]
+
+Resources:
+
+  DomainName:
+    Type: Custom::Route53HostedZoneDetails
+    Version: '1.0'
+    Condition: UseDNSRecord
+    Properties:
+      ServiceToken: !Join [':', ['arn:aws:lambda', !Ref 'AWS::Region', !Ref 'AWS::AccountId', "function", !ImportValue { "Fn::Sub": "${ChatanooStack}-Route53HostedZoneDetails" }]]
+      Id: !Ref Route53HostedZone
+
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    Properties:
+      AccessControl: Private
+      WebsiteConfiguration:
+        ErrorDocument: error.html
+        IndexDocument: index.html
+      Tags:
+        - Key: chatanoo:project
+          Value: !Ref ProjectName
+        - Key: chatanoo:component
+          Value: front/dring
+
+  StaticWebsite:
+    Type: Custom::S3Uploader
+    Version: 1.0
+    Properties:
+      ServiceToken: !Join [":", ["arn:aws:lambda", !Ref 'AWS::Region', !Ref 'AWS::AccountId', "function", !ImportValue { "Fn::Sub": "${ChatanooStack}-S3Uploader"}]]
+      Source:
+        S3:
+          Bucket: !Ref DeploymentBucket
+          Key: !Ref DeploymentZipKey
+        Unzip: true
+      Destination:
+        Bucket: !Ref S3Bucket
+        Key: ''
+
+  StaticWebsiteEnvironement:
+    Type: Custom::S3Uploader
+    Version: 1.0
+    Properties:
+      ServiceToken: !Join [":", [ "arn:aws:lambda", !Ref 'AWS::Region', !Ref 'AWS::AccountId', "function", !ImportValue { "Fn::Sub": "${ChatanooStack}-S3Uploader" }] ]
+      Source:
+        Json:
+          PROXY: !Ref Proxy
+          SERVICE_URL: !ImportValue { "Fn::Sub": "${ChatanooStack}-CoreUrl" }
+          AWS_URL: !Join ["", [!ImportValue { "Fn::Sub": "${ChatanooStack}-MediasCenterUrl" }, "/"]]
+          MEDIAS_CENTER_URL: !Join ["", [!ImportValue { "Fn::Sub": "${ChatanooStack}-MediasCenterUrl" }, "/m/"]]
+          MEDIAS_CENTER_INPUT_BUCKET: !ImportValue { "Fn::Sub": "${ChatanooStack}-MediasCenterInputBucket" }
+          MEDIAS_CENTER_OUTPUT_BUCKET: !ImportValue { "Fn::Sub": "${ChatanooStack}-MediasCenterOutputBucket" }
+          MEDIAS_CENTER_COGNITO_POOL: !ImportValue { "Fn::Sub": "${ChatanooStack}-MediasCenterIdentityPool" }
+          USER: !If [CreateApiKey, !GetAtt ChatanooApiKey.User, !Ref User]
+          PASS: !If [CreateApiKey, !GetAtt ChatanooApiKey.Password, !Ref Password]
+          API_KEY: !If [CreateApiKey, !Ref ChatanooApiKey, !Ref ApiKey]
+
+      Destination:
+        Bucket: !Ref S3Bucket
+        Key: config.json
+    DependsOn: StaticWebsite
+
+  CDNIdentity:
+    Type: Custom::CloudFrontIdentity
+    Version: 1.0
+    Properties:
+      ServiceToken: !Join [":",[ "arn:aws:lambda", !Ref 'AWS::Region', !Ref 'AWS::AccountId', "function", !ImportValue { "Fn::Sub": "${ChatanooStack}-CloudFrontIdentity" } ] ]
+      Comment: !Join ["-",[ "access-identity", !Ref S3Bucket ] ]
+
+  CDNCertificate:
+    Type: Custom::CloudFrontCertificate
+    Version: 1.0
+    Properties:
+      ServiceToken: !Join [":",[ "arn:aws:lambda", !Ref 'AWS::Region', !Ref 'AWS::AccountId', "function", !ImportValue { "Fn::Sub": "${ChatanooStack}-CloudFrontCertificateLambda" } ] ]
+      DomainName: !Join [".",[ !Ref SubDomainName, !Ref DomainName ] ]
+      DomainValidationOptions:
+        - DomainName: !Ref DomainName
+          ValidationDomain:"Fn::Join" : [".",[ !Ref SubDomainName, !Ref DomainName ] ]
+      Tags:
+        - Key: chatanoo:project
+          Value: !Ref ProjectName
+        - Key: chatanoo:component
+          Value: front/dring
+    Condition: UseDNSAndHTTPS
+
+  CDNDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Comment: !Sub "Chatanoo ${ProjectName} Distribution"
+        Origins:
+          - DomainName: !GetAtt S3Bucket.DomainName
+            Id: !Join ["-", ["s3Origin", !Ref S3Bucket]]
+            S3OriginConfig:
+              OriginAccessIdentity: !Join ["",[ "origin-access-identity/cloudfront/", !Ref CDNIdentity ] ]
+        Enabled: "true"
+        Aliases:
+          - !If
+            - UseDNSRecord
+            - !Join ['.', [!Ref SubDomainName, !Ref DomainName]]
+            - !Ref 'AWS::NoValue'
+          - !If
+            - UseRootRecord
+            - !Join ['.', [!Ref DomainName]]
+            - !Ref 'AWS::NoValue'
+        PriceClass: PriceClass_All
+        DefaultRootObject: index.html
+        DefaultCacheBehavior:
+          AllowedMethods: [ "GET", "HEAD" ]
+          TargetOriginId: !Join ["-", ["s3Origin", !Ref S3Bucket]]
+          ForwardedValues:
+            QueryString: "false"
+            Cookies:
+              Forward: none
+          ViewerProtocolPolicy: allow-all
+        ViewerCertificate: !If
+          - UseDNSAndHTTPS
+          - SSLSupportMethod: sni-only
+            ACMCertificateArn: !Ref CDNCertificate
+            MinimumProtocolVersion: TLSv1
+            Certificate: !Ref CDNCertificate
+            CertificateSource: acm
+          - !Ref 'AWS::NoValue'
+
+  S3BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    DependsOn: CDNDistribution
+    Properties:
+      Bucket: !Ref S3Bucket
+      PolicyDocument:
+        Version: 2008-10-17
+        Statement:
+          - Sid: 2
+            Effect: Allow
+            Principal:
+              CanonicalUser: !GetAtt CDNIdentity.S3CanonicalUserId
+            Action: s3:GetObject
+            Resource: !Join ["",[ "arn:aws:s3:::", !Ref S3Bucket, "/*" ] ]
+
+  DNSRecord:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      Comment: !Sub "Public DNS Record for Chatanoo Dring ${ProjectName}"
+      HostedZoneId: !If ["UseDNSRecord", !Ref Route53HostedZone, !Ref 'AWS::NoValue']
+      Name: !Join ["", [!Ref SubDomainName, ".", !Ref DomainName, "."]]
+      Type: CNAME
+      TTL: 300
+      ResourceRecords:
+        - !GetAtt CDNDistribution.DomainName
+    Condition: UseDNSRecord
+
+  # RootDNSRecord:
+  #   Type: AWS::Route53::RecordSet
+  #   Properties:
+  #     Comment: !Sub "Public DNS Record for Chatanoo Dring ${ProjectName}"
+  #     HostedZoneId: !If ["UseDNSRecord", !Ref Route53HostedZone, !Ref 'AWS::NoValue']
+  #     Name: !Join ["", [!Ref DomainName, "."]]
+  #     Type: A
+  #     TTL: 300
+  #     AliasTarget:
+  #       HostedZoneId: Z2FDTNDATAQYW2
+  #       DNSName: !GetAtt CDNDistribution.DomainName
+  #   Condition: UseRootRecord
+
+  ChatanooApiKey:
+    Type: Custom::ChatanooApiKey
+    Version: 1.0
+    Condition: CreateApiKey
+    Properties:
+      ServiceToken: !Join [":", ["arn:aws:lambda", !Ref 'AWS::Region', !Ref 'AWS::AccountId', "function", !ImportValue { "Fn::Sub": "${ChatanooStack}-ChatanooCreateApiKeyLambda" }]]
+      Environment:
+        Bucket: !ImportValue { "Fn::Sub": "${ChatanooStack}-ChatanooApiKeyEnvironmentBucket" }
+        Key: !ImportValue { "Fn::Sub": "${ChatanooStack}-ChatanooApiKeyEnvironmentKey" }
+      Site: !Ref ProjectName
+      Host: !If
+        - UseDNSRecord
+        - !Join ['', [!Ref SubDomainName, '.', !Ref DomainName]]
+        - !GetAtt CDNDistribution.DomainName
+
+Outputs:
+  User:
+    Value: !If [CreateApiKey, !GetAtt ChatanooApiKey.User, !Ref User]
+  Password:
+    Value: !If [CreateApiKey, !GetAtt ChatanooApiKey.Password, !Ref Password]
+  Url:
+    Value: !If
+      - UseDNSRecord
+      - !Join ['', [!If [UseHTTPS, 'https://', 'http://'], !Ref SubDomainName, '.', !Ref DomainName]]
+      - !Join ['', [!If [UseHTTPS, 'https://', 'http://'], !GetAtt CDNDistribution.DomainName]]

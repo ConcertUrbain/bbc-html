@@ -7,10 +7,10 @@
 	<link rel='stylesheet' href='https://npmcdn.com/leaflet@1.0.0-rc.1/dist/leaflet.css' type='text/css' />
 	<link rel='stylesheet' href='styles/mediaelement/mediaelementplayer.min.css' type='text/css' />
 	<link rel='stylesheet' href='styles/leaflet/MarkerCluster.css' type='text/css' />
-	<link rel='stylesheet' href='styles/leaflet/MarkerCluster.Default.css' type='text/css' />    
+	<link rel='stylesheet' href='styles/leaflet/MarkerCluster.Default.css' type='text/css' />
 </head>
 <body>
-	
+
 	<!--  -->
 	<!-- TEMPLATES -->
 	<!--  -->
@@ -22,7 +22,7 @@
 	<script id="itemTemplate" type="text/template">
 		<div class="itemTitre"><a href="#"><%= title %></a></div>
     </script>
-    
+
 	<script id="popUpTemplate" type="text/template">
 		<div class="popupRelative">
 			<div class="popupBg"></div>
@@ -49,11 +49,11 @@
 			</div>
 		</div>
     </script>
-    
+
 	<script id="commentTemplate" type="text/template">
 		<div class="comment <%= bgcolor %>"><p><%= content %></p>
     </script>
-    
+
 	<script id="textMediaTemplate" type="text/template">
         <div class='textMedia'><%= content %></div>
     </script>
@@ -61,7 +61,7 @@
 	<script id="imageTemplate" type="text/template">
 		<img src='<%= url %>' alt='' />
     </script>
-    
+
 	<script id="videoTemplate" type="text/template">
 		<video width='<%= width %>' height='<%= height %>' id='playervideo' <%= html5options %> >
 			<source src='<%= url %>' type='video/mp4' />
@@ -101,7 +101,7 @@
 					<div class="uploadHeader">
 						<div class="uploadClose">x</div>
 					</div>
-					<div class="uploadBody">		
+					<div class="uploadBody">
 						<div id="etape_user" class="etape_user">
 							<div class="tabLoginInscription">
 								<div class="login selected">Se connecter</div>
@@ -110,7 +110,7 @@
 							<div>
 								<div class="loginForm">
 									<form id="loginForm">
-									
+
 										<div class="elementForm">
 											<span class="label">Votre pseudo : </span><input type="input" id="pseudo" name="pseudo" value="" />
 										</div>
@@ -123,58 +123,58 @@
 										<div class="elementForm">
 											<button type="submit" id="login-button">Se connecter</button>
 										</div>
-										
+
 									</form>
 								</div>
 								<div class="inscriptionForm">
 									<form id="inscriptionForm">
-									
+
 										<div class="elementForm">
 											<span class="label">Votre nom : </span><input type="input" id="adduser_nom" name="adduser_nom" value="" />
 										</div>
-										
+
 										<div class="elementForm">
 											<span class="label">Votre prénom : </span><input type="input" id="adduser_prenom" name="adduser_prenom" value="" />
 										</div>
-										
+
 										<div class="elementForm">
 											<span class="label">Votre pseudo (*) : </span><input type="input" id="adduser_pseudo" name="adduser_pseudo" value="" />
 										</div>
-										
+
 										<div class="elementForm">
 											<span class="label">Votre mot de passe (*): </span><input type="password" id="adduser_password" name="adduser_password"  />
 										</div>
-										
+
 										<div class="elementForm">
 											<span class="label">Votre email : </span><input type="input" id="adduser_email" name="adduser_email" value="" />
 										</div>
 										<div class="elementForm">
 											<p>(*) champs obligatoires</p>
 										</div>
-										
+
 										<div class="elementForm">
 											<button type="submit" id="inscription-button">S&apos;inscrire</button>
 										</div>
-										
+
 									</form>
 								</div>
 							</div>
 						</div>
-						
+
 						<div id="etape_upload" class="etape_upload" style="display:none">
 							<div id="uploadForm" class="uploadForm">
-							
+
 								<div class="elementForm">
 									<p class="rubrique">A quelle question répondez-vous ?</p>
 									<select id="formQueries" name="queries" />
 								</div>
-								
+
 								<div class="elementForm">
 									<p class="rubrique">Titre de votre témoignage :</p>
 									<input type="input" id="itemTitle" name="itemTitle" value="" />
 									<p class="sousrubrique">Faites attention que votre témoignage ne traite que d&apos;une idée, avec un parti pris clair.<br/>Cela permettra à chacun de bien cibler sa réponse.</p>
 								</div>
-								
+
 								<div class="elementForm">
 									<p class="rubrique principale">Vous avez deux choix :</p>
 									<p class="rubrique">A. Chargez votre média (jpeg, png, mp3, mp4) :</p>
@@ -191,18 +191,18 @@
 									</div>
 								</div>
 							</div>
-							
+
 							<div id="uploadedMedia" class="uploadedMedia">
 								<div class="mediaParent"></div>
 							</div>
-							
-							
+
+
 							<div class="buttonParent">
 								<p class="rubrique etape etape2">....... Prochaine étape 2/4</p>
 								<button id="toEtape2Button">&gt;</button>
 							</div>
 						</div>
-						
+
 						<div id="etape_vote" class="etape_vote" style="display:none">
 							<p class="rubrique">Donnez votre sentiment :</p>
 							<div class="inputs">
@@ -220,7 +220,7 @@
 								<button id="toEtape3Button">&gt;</button>
 							</div>
 						</div>
-						
+
 						<div id="etape_keyword" class="etape_keyword" style="display:none">
 							<p class="rubrique">Choisissez un mot-clé :</p>
 							<div id="formKeywords" class="keywords"></div>
@@ -229,7 +229,7 @@
 								<button id="toEtape4Button">&gt;</button>
 							</div>
 						</div>
-						
+
 						<div id="etape_map" class="etape_map" style="display:none">
 							<p class="rubrique">Placez votre témoignage sur la carte :</p>
 							<div class="formMapParent">
@@ -241,52 +241,52 @@
 							<div class="buttonParent">
 								<p class="rubrique etape etape5">....... Envoi de la contribution</p>
 								<button id="toEtape5Button">&gt;</button>
-							</div>					
+							</div>
 						</div>
-						
+
 						<div id="etape_envoi" class="etape_envoi" style="display:none">
 							<p class="rubrique">Envoyez votre témoignage  :</p>
 							<div class="elementForm">
 								<button type="submit" id="envoi-button">Envoyer</button>
 							</div>
 						</div>
-						
+
 						<div id="etape_conclusion" class="etape_conclusion" style="display:none">
 							<p>Merci de votre contribution !</p>
 							<div class="buttonParent">
 								<p class="rubrique etape etape1">....... Envoyer un autre média</p>
 								<button id="toEtape1Button">&gt;</button>
-							</div>					
+							</div>
 							<div class="buttonParent">
 								<p class="rubrique etape retour">...... Retour</p>
 								<button id="toEtape6Button">&gt;</button>
-							</div>					
+							</div>
 						</div>
-							
+
 					</div>
 				</div>
 			</div>
 		</div>
     </script>
-    
+
 
 	<!--  -->
 	<!-- HTML -->
 	<!--  -->
 
 	<div class="global" id="global">
-    
+
     	<div class="header">
             <div class="haut"><div class="terme utopique"></div></div>
 		</div>
-                
+
     	<div class="container">
             <div class="milieu">
                 <div class="gauche"><div class="terme individuel"></div></div>
                 <div class="centre">
-                    
+
                     <div class="ecrans">
-                    
+
                         <div class="accueil">
                             <div class="titres">
                                 <div class="titre">le bonheur brut collectif</div>
@@ -303,7 +303,7 @@
                                 <ul class="liste" id="queries"></ul>
                             </div>
                         </div>
-                        
+
                         <div class="mosaique" id="mosaique">
                             <div class="vues">
                                 <div class="vue carte" id="carte">CARTE</div>
@@ -324,22 +324,22 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="tooltip"></div>
                         <div class="popup" id="popup"></div>
                         <div class="animationAttente">
                         	<div class="spinnerParent" id="attente"></div>
                         </div>
-                        
+
                     </div>
-                    
+
                 </div>
-            
+
                 <div class="droite"><div class="terme collectif"></div></div>
                 <div class="clear"></div>
             </div>
         </div>
-        
+
         <div class="footer">
         	<div class="bas">
             	<div class="terme realiste"></div>
@@ -356,19 +356,19 @@
                 <div class="plein_ecran"></div>
             </div>
         </div>
-        
+
         <div class="popup player" id="popupPlayer"></div>
     </div>
-    
+
 	<script src="js/libs/jquery-2.1.1.min.js"></script>
     <script src="js/libs/underscore-min.js"></script>
     <script src="js/libs/underscore.strings.js"></script>
     <script src="js/libs/backbone-min.js"></script>
     <script src="js/libs/json2_min.js"></script>
     <script src="js/libs/spin.min.js"></script>
-    <script src="js/libs/leaflet.js"></script>    
+    <script src="js/libs/leaflet.js"></script>
     <script src="js/libs/leaflet.markercluster.js"></script>
-    
+
 	<script src="js/utils.js"></script>
 	<script src="js/draw_bbc.js"></script>
 	<script src="js/models_backbone.js"></script>
@@ -383,6 +383,6 @@
     <script src="js/libs/greensock/utils/Draggable.min.js"></script>
     <script src="js/libs/greensock/TimelineLite.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.1.36/aws-sdk.js"></script>
-    
+
 </body>
 </html>

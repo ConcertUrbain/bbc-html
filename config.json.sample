@@ -1,0 +1,12 @@
+{
+  "PROXY": "proxy/ba-simple-proxy.php?url=",
+  "SERVICE_URL": "http://ws.chatanoo.org/services",
+  "AWS_URL": "http://medias.aws.chatanoo.org/",
+  "MEDIAS_CENTER_URL": "http://mc.chatanoo.org/m/",
+  "MEDIAS_CENTER_INPUT_BUCKET": "chatanoo-medias-input",
+  "MEDIAS_CENTER_OUTPUT_BUCKET": "chatanoo-medias-output",
+  "MEDIAS_CENTER_COGNITO_POOL": "eu-west-1:b263aeab-02ae-4268-b338-95e7ea79e255",
+  "USER": "mazerte",
+  "PASS": "desperados",
+  "API_KEY": "BBC_qJlCaSsBbYBYypwF9TT8KmCOxhuZ"
+}
